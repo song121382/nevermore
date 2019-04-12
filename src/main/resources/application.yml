@@ -1,0 +1,46 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/jsp/
+      suffix: .jsp
+
+  datasource:
+      url: jdbc:mysql://localhost:3306/nevermore?useUnicode=true&characterEncoding=utf-8
+      username: root
+      password: root
+      driverClassName: com.mysql.jdbc.Driver
+      type: com.alibaba.druid.pool.DruidDataSource
+      filters: stat
+      maxActive: 20
+      initialSize: 1
+      maxWait: 60000
+      minIdle: 1
+      timeBetweenEvictionRunsMillis: 60000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+
+mybatis:
+    typeAliasesPackage: com.defence.nevermore.domain
+    mapperLocations: classpath:mapper/*.xml
+
+# JWT
+jwt:
+  header: Authorization
+  secret: mySecret
+  #token有效期一天
+  expiration: 86400
+  tokenHead: "Bearer "
+
+
+logging:
+  level:
+    root: debug
+
+
+server:
+  port: 1226
