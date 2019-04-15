@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.OutputStream;
@@ -67,15 +68,23 @@ public class JwtApiIntercptor implements HandlerInterceptor {
                 }
             }
         }
-        PrintWriter printWriter = null;
-        OutputStreamWriter outputStreamWriter = null;
-        response.setContentType("application/json; charset=utf-8");
-        outputStreamWriter = new OutputStreamWriter(response.getOutputStream(),"utf-8");
-        printWriter = new PrintWriter(outputStreamWriter, true);
-        Response r = Response.error("token 不合法");
-        printWriter.write(JSON.toJSONString(r));
-        printWriter.flush();
-        printWriter.close();
+        try {
+            PrintWriter printWriter = null;
+            OutputStreamWriter outputStreamWriter = null;
+            response.setContentType("application/json; charset=utf-8");
+            OutputStream ops = response.getOutputStream();
+            outputStreamWriter = new OutputStreamWriter(ops,"utf-8");
+            printWriter = new PrintWriter(outputStreamWriter, true);
+            Response r = Response.error("token 不合法");
+            printWriter.write(JSON.toJSONString(r));
+            printWriter.flush();
+            printWriter.close();
+            ops.close();
+        } catch (Exception e) {
+
+        }
+
+
         return false;
     }
 

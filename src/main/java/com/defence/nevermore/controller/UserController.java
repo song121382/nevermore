@@ -1,12 +1,10 @@
 package com.defence.nevermore.controller;
 
 import com.defence.nevermore.domain.Response;
-import com.defence.nevermore.domain.User;
+import com.defence.nevermore.domain.ds1.User;
 import com.defence.nevermore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,6 +1,6 @@
 package com.defence.nevermore.mapper;
 
-import com.defence.nevermore.domain.User;
+import com.defence.nevermore.domain.ds1.User;
 
 public interface UserMapper extends UserMapperExtend {
     /**

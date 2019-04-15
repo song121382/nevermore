@@ -1,17 +1,13 @@
 package com.defence.nevermore.config.security;
 
 
-import com.defence.nevermore.config.security.JwtUser;
-import com.defence.nevermore.domain.User;
+import com.defence.nevermore.domain.ds1.User;
 import com.defence.nevermore.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.stream.Collectors;
 
 /**
  * @ProjectName: nevermore
