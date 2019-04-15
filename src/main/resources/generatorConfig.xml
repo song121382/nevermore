@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<classPathEntry location="C:\Users\Administrator\.m2\repository\mysql\mysql-connector-java\5.0.8\mysql-connector-java-5.0.8.jar"/>
+	<!-- MyBatis生成器，自动生成实体类、DAO接口和Mapping映射文件 -->
+	<context id="Mysql" targetRuntime="MyBatis3" defaultModelType="flat">
+		<!-- 这里引入分页扩展插件 -->
+		<!-- <plugin type="li.uline.common.plugin.PaginationPlugin" /> -->
+
+		<!-- 屏蔽注释信息 -->
+		<commentGenerator>
+			<property name="suppressDate" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/nevermore" userId="root" password="root" />
+
+		<!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<!-- 指定生成数据模型对象的包名，如com.xxx.xxx.model, targetProject 指定是项目及存放model的目录。 -->
+		<javaModelGenerator targetPackage="com.defence.nevermore.domain"
+			targetProject="src/main/java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<!-- 生成映射文件的包名和位置。如果用maven管理，一般xml文件放在src/main/resources目录下。 -->
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject="src/main/resources">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<!-- 生成DAO的包名和位置 -->
+		<javaClientGenerator targetPackage="com.defence.nevermore.mapper"
+			targetProject="src/main/java" type="XMLMAPPER">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator> 
+		
+		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
+
+		<!--<table tableName="base_data_key" enableCountByExample="false"-->
+			   <!--enableUpdateByExample="false" enableDeleteByExample="false"-->
+			   <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
+			<!--<generatedKey column="id" sqlStatement="mysql" identity="true" />-->
+		<!--</table>-->
+		<table tableName="test" enableCountByExample="false"
+			   enableUpdateByExample="false" enableDeleteByExample="false"
+			   enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="rootInterface" value="com.defence.nevermore.mapper.TestMapperExtend"/>
+			<generatedKey column="id" sqlStatement="mysql" identity="true" />
+		</table>
+		
+	<!-- 如果是在eclipse 中，选择pom.xml文件，击右键先择Run AS——>Maven Build… ——>在Goals框中输入：mybatis-generator:generate 
+		如果在命令行输入Maven命令即可，注意：一定是当前项目目录下运行该命令： mvn mybatis-generator:generate -->
+	</context>
+</generatorConfiguration>
