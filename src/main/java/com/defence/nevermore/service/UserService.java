@@ -1,6 +1,6 @@
 package com.defence.nevermore.service;
 
-import com.defence.nevermore.domain.User;
+import com.defence.nevermore.domain.ds1.User;
 
 /**
  * @ProjectName: nevermore

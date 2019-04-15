@@ -1,7 +1,7 @@
 package com.defence.nevermore.service.impl;
 
 import com.defence.nevermore.config.security.JwtTokenUtil;
-import com.defence.nevermore.domain.User;
+import com.defence.nevermore.domain.ds1.User;
 import com.defence.nevermore.mapper.UserMapper;
 import com.defence.nevermore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,9 +14,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @ProjectName: nevermore
