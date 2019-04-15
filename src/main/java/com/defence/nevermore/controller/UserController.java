@@ -29,7 +29,7 @@ import java.util.Map;
  */
 @CrossOrigin
 @RestController
-@RequestMapping(value = "/user"/*, produces = "text/html;charset=UTF-8"*/)
+//@RequestMapping(value = "/user"/*, produces = "text/html;charset=UTF-8"*/)
 public class UserController {
 
     private UserService userService;
@@ -82,8 +82,8 @@ public class UserController {
      * @throws AuthenticationException 错误信息
      */
     @GetMapping(value = "/refreshToken")
-    public String refreshToken(@RequestHeader String authorization) throws AuthenticationException {
-        return userService.refreshToken(authorization);
+    public Response refreshToken(@RequestHeader String authorization) throws AuthenticationException {
+        return Response.success(userService.refreshToken(authorization));
     }
 
     /**

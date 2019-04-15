@@ -1,5 +1,6 @@
 package com.defence.nevermore;
 
+import com.defence.nevermore.config.security.JwtConfig;
 import com.defence.nevermore.mapper.TestMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,15 +14,15 @@ import java.util.List;
 @SpringBootTest(classes = NevermoreApplication.class)
 public class NevermoreApplicationTests {
 
-//    @Autowired
-//    private JwtConfig jwtConfig;
     @Autowired
-    private TestMapper testMapper;
+    private JwtConfig jwtConfig;
+//    @Autowired
+//    private TestMapper testMapper;
 
     @Test
     public void contextLoads() {
-//        System.out.println(jwtConfig.getHeader());
-        List<com.defence.nevermore.domain.Test> list = testMapper.getTT();
+        System.out.println(jwtConfig.getHeader());
+//        List<com.defence.nevermore.domain.Test> list = testMapper.getTT();
 
     }
 

@@ -1,16 +1,23 @@
 package com.defence.nevermore.config.security;
 
+import com.alibaba.fastjson.JSON;
+import com.defence.nevermore.domain.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
+import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 
 /**
  * @ProjectName: nevermore
@@ -26,6 +33,7 @@ import javax.servlet.http.HttpServletResponse;
  * jwt api鉴权
  *
  */
+//@Component
 public class JwtApiIntercptor implements HandlerInterceptor {
 
     @Autowired
@@ -35,18 +43,18 @@ public class JwtApiIntercptor implements HandlerInterceptor {
     @Autowired
     private JwtConfig jwtConfig;
 
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-
         //获取httpresonse header 中 Authorization名称的jwt
         String authHeader = request.getHeader(jwtConfig.getHeader());
         String tokenHead =jwtConfig.getTokenHead() ;
-        //解析jwt
+//        解析jwt
         if (authHeader != null && authHeader.startsWith(tokenHead)) {
             String authToken = authHeader.substring(tokenHead.length());
             //取出jwt中的用户信息
             String username = jwtTokenUtil.getUsernameFromToken(authToken);
-            if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
+            if (username != null /*&& SecurityContextHolder.getContext().getAuthentication() == null*/) {
                 //登录验证，返回userdetail
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 //判断令牌有效性
@@ -59,6 +67,15 @@ public class JwtApiIntercptor implements HandlerInterceptor {
                 }
             }
         }
+        PrintWriter printWriter = null;
+        OutputStreamWriter outputStreamWriter = null;
+        response.setContentType("application/json; charset=utf-8");
+        outputStreamWriter = new OutputStreamWriter(response.getOutputStream(),"utf-8");
+        printWriter = new PrintWriter(outputStreamWriter, true);
+        Response r = Response.error("token 不合法");
+        printWriter.write(JSON.toJSONString(r));
+        printWriter.flush();
+        printWriter.close();
         return false;
     }
 

@@ -36,14 +36,14 @@ public class UserServiceImpl implements UserService {
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
     private JwtTokenUtil jwtTokenUtil;
-    private UserMapper userRepository;
+    private UserMapper userMapper;
 
     @Autowired
-    public UserServiceImpl(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil, UserMapper userRepository) {
+    public UserServiceImpl(AuthenticationManager authenticationManager, UserDetailsService userDetailsService, JwtTokenUtil jwtTokenUtil, UserMapper userMapper) {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
         this.jwtTokenUtil = jwtTokenUtil;
-        this.userRepository = userRepository;
+        this.userMapper = userMapper;
     }
 
     @Override
@@ -54,9 +54,6 @@ public class UserServiceImpl implements UserService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         //通过username登录验证，返回userdetail
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-
-
-
         return jwtTokenUtil.generateToken(userDetails);//生成jwt,将userdetails保存进去
     }
 
@@ -64,16 +61,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public String register(User user) {
         String username = user.getUsername();
-        if (userRepository.selectByPrimaryKey(username) != null) {
+        if (userMapper.selectByPrimaryKey(username) != null) {
             return "用户已存在";
         }
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String rawPassword = user.getPassword();
         user.setPassword(encoder.encode(rawPassword));
-        List<String> roles = new ArrayList<>();
-        roles.add("ROLE_USER");
-        user.setRoles(roles);
-        userRepository.insert(user);
+//        List<String> roles = new ArrayList<>();
+//        roles.add("ROLE_USER");
+//        user.setRoles(roles);
+        userMapper.insert(user);
         return "success";
     }
 
@@ -88,7 +85,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUser(String username) {
-        return userRepository.selectByPrimaryKey(username);
+        return userMapper.selectByPrimaryKey(username);
     }
 
 

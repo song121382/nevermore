@@ -1,6 +1,8 @@
 package com.defence.nevermore.config;
 
 import com.defence.nevermore.config.security.JwtApiIntercptor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -17,11 +19,20 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  */
+@Configuration
 public class WebMvcConfig implements WebMvcConfigurer {
+
+    //关键，将拦截器作为bean写入配置中,如果用@comment注解在jwtApiIntercptro类上的话，会出现类中@Autowired的类为null
+    @Bean
+    public JwtApiIntercptor jwtApiIntercptor(){
+        return new JwtApiIntercptor();
+    }
+
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         //添加自定义jwt api鉴权
-        registry.addInterceptor(new JwtApiIntercptor()).addPathPatterns("/user/**");
+        registry.addInterceptor(jwtApiIntercptor()).addPathPatterns("/**")
+        .excludePathPatterns("/login","/register");
     }
 
     @Override

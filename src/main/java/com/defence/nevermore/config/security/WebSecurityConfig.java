@@ -28,7 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
  * @UpdateRemark: 更新说明
  * @Version: 1.0
  *
- *
+ *springsecurity
  * 安全配置类
  * 这里设置了禁止访问所有地址，除了用于验证身份的/user/**地址
  * 同时密码的加密方式为BCrypt
@@ -70,11 +70,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         httpSecurity.csrf().disable().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and().authorizeRequests()
                 .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                .antMatchers("/user/**").permitAll()
-                .anyRequest().authenticated()
+                .antMatchers("/login").permitAll()
+//                .antMatchers("/user/**").permitAll()
+//                .anyRequest().authenticated()
                 .and().headers().cacheControl();
+
 //        httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter, UsernamePasswordAuthenticationFilter.class);
         httpSecurity.exceptionHandling().authenticationEntryPoint(entryPointUnauthorizedHandler).accessDeniedHandler(restAccessDeniedHandler);
+
+
 
     }
 

@@ -61,9 +61,9 @@ public class Response {
     public static Response error(String msg) {
         return new Response(errorCode, msg);
     }
-    public static Response error(Object obj) {
-        return new Response(errorCode, errorMsg,obj);
-    }
+//    public static Response error(Object obj) {
+//        return new Response(errorCode, errorMsg,obj);
+//    }
     public static Response error() {
         return new Response(errorCode, errorMsg);
     }

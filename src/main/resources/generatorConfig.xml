@@ -46,11 +46,11 @@
 			   <!--enableSelectByExample="false" selectByExampleQueryId="false">-->
 			<!--<generatedKey column="id" sqlStatement="mysql" identity="true" />-->
 		<!--</table>-->
-		<table tableName="test" enableCountByExample="false"
+		<table tableName="user" enableCountByExample="false"
 			   enableUpdateByExample="false" enableDeleteByExample="false"
 			   enableSelectByExample="false" selectByExampleQueryId="false">
-			<property name="rootInterface" value="com.defence.nevermore.mapper.TestMapperExtend"/>
-			<generatedKey column="id" sqlStatement="mysql" identity="true" />
+			<property name="rootInterface" value="com.defence.nevermore.mapper.UserMapperExtend"/>
+			<generatedKey column="username" sqlStatement="mysql" identity="true" />
 		</table>
 		
 	<!-- 如果是在eclipse 中，选择pom.xml文件，击右键先择Run AS——>Maven Build… ——>在Goals框中输入：mybatis-generator:generate 
