@@ -1,7 +1,8 @@
 package com.defence.nevermore;
 
+import com.defence.nevermore.config.dataSource.DataSourceConfig;
+import com.defence.nevermore.config.dataSource.MybatisAliasesMapperConfig;
 import com.defence.nevermore.config.security.JwtConfig;
-import com.defence.nevermore.mapper.TestMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +20,17 @@ public class NevermoreApplicationTests {
 //    @Autowired
 //    private TestMapper testMapper;
 
+    @Autowired
+    private DataSourceConfig dataSourceConfig;
+    @Autowired
+    private MybatisAliasesMapperConfig mybatisAliasesMapperConfig;
+
     @Test
     public void contextLoads() {
-        System.out.println(jwtConfig.getHeader());
+//        System.out.println(jwtConfig.getHeader());
 //        List<com.defence.nevermore.domain.Test> list = testMapper.getTT();
+        System.out.println(dataSourceConfig.getDs1());
+
 
     }
 

@@ -1,9 +1,9 @@
-package com.defence.nevermore.mapper;
+package com.defence.nevermore.mapper.ds2;
 
 /**
  * @ProjectName: nevermore
  * @Package: com.defence.nevermore.mapper
- * @ClassName: UserMapperExtend
+ * @ClassName: UserMapperExtend2
  * @Description: java类作用描述
  * @Author: songxiangfu
  * @CreateDate: 2019/4/15 11:19
@@ -14,6 +14,6 @@ package com.defence.nevermore.mapper;
  *
  * 自己写的user相关查询，mybatis-generator 不会覆盖
  */
-public interface UserMapperExtend {
+public interface UserMapperExtend2 {
 
 }

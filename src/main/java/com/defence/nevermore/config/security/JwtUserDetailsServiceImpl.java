@@ -2,7 +2,7 @@ package com.defence.nevermore.config.security;
 
 
 import com.defence.nevermore.domain.ds1.User;
-import com.defence.nevermore.mapper.UserMapper;
+import com.defence.nevermore.mapper.ds1.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

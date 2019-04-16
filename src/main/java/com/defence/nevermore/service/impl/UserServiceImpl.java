@@ -2,7 +2,7 @@ package com.defence.nevermore.service.impl;
 
 import com.defence.nevermore.config.security.JwtTokenUtil;
 import com.defence.nevermore.domain.ds1.User;
-import com.defence.nevermore.mapper.UserMapper;
+import com.defence.nevermore.mapper.ds1.UserMapper;
 import com.defence.nevermore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

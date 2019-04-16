@@ -1,10 +1,12 @@
 package com.defence.nevermore.config.dataSource;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
 @ConfigurationProperties(prefix = "spring.datasource")
+@PropertySource("classpath:application.yml")
 public class DataSourceConfig {
 
 	private DataSource ds1;

@@ -1,4 +1,4 @@
-package com.defence.nevermore.mapper;
+package com.defence.nevermore.mapper.ds1;
 
 import com.defence.nevermore.domain.ds1.User;
 
